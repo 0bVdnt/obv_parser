@@ -1,0 +1,7 @@
+(library
+ (name obv_parser_lib)
+ (libraries yojson ppx_yojson_lib)
+ (preprocess (pps ppx_deriving_yojson)
+ (flags (:standard -w -27 -w @warning)
+ ; Module list will be added later as per the plan
+)
