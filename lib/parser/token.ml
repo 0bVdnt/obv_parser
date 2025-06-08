@@ -1,0 +1,12 @@
+type token = 
+  | KwInt                   [@name "KwInt"]
+  | KwVoid                  [@name "KwVoid"]
+  | KwReturn                [@name "KwReturn"]
+  | Identifier of string    [@name "Identifier"]
+  | Constant of int         [@name "constant"]
+  | OpenParen               [@name "OpenParen"]
+  | CloseParen              [@name "CloseParen"]
+  | OpenBrace               [@name "OpenBrace"]
+  | Semicolon               [@name "Semicolon"]
+  | EOF                     [@name "EOF"]
+[@@deriving yojson]
