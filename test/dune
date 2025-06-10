@@ -1,3 +1,0 @@
-(test
- (name test_obv_parser)
- (libraries yojson ppx_yojson_lib))

@@ -1,6 +1,3 @@
 (executable
- (name obv_parser_main)
- (libraries obv_parser_lib)
- (public_name obv_parser_main)
- (modes byte)
-)
+ (name main)
+ (libraries yojson))
