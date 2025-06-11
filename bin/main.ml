@@ -21,7 +21,8 @@ type exp =
 type statement =
     | S_Return of exp
 
-(* <function> ::= "int" <identifier> ... { <statement> } *)
+(* <function> ::= "int" <identifier> "(" [ "void" ] ")" "{" <statement> "}" *)
+(* Here [ "void" ] is the notation from EBNF - Extended Backus-Naur Form representing that it is optional*)
 type func = {
     name: string;
     body: statement;
@@ -154,6 +155,15 @@ let parse_function (tokens : token list) : func * token list =
             raise (SyntaxError msg)
     in
     let tokens = expect T_LPAREN tokens in
+    (* Check for the OPTIONAL 'void' keyword. *)
+    let tokens =
+        (* Peek at the next token without consuming it. *)
+        let (next_token, _) = take_token tokens in
+        if next_token = T_KW_VOID then
+            expect T_KW_VOID tokens (* If `void` is present consume it. *)
+        else
+            tokens (* Otherwise, do nothing and proceed. *)
+    in
     let tokens = expect T_RPAREN tokens in
     let tokens = expect T_LBRACE tokens in
 
