@@ -1,5 +1,3 @@
-[@@@warning "-37"] (* Disable "unused constructor" warning for this file *)
-
 (* I. The Input: Tokens *)
 type token =
     | T_KW_RETURN
