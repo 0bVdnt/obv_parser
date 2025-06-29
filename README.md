@@ -1,6 +1,6 @@
-# OBV Compiler: From C to x64 Assembly
+# obvcc-toolchain: From C tokens to x64 Assembly
 
-A multi-language, multi-stage compiler that transforms a minimal C-like language into platform-aware x64 assembly.
+A parser, assembly generator and a code emitter for a multi-language, multi-stage compiler that transforms a minimal C-like language into platform-aware x64 assembly.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OCaml](https://img.shields.io/badge/OCaml-5.1-orange.svg)](https://ocaml.org)
@@ -24,15 +24,15 @@ The primary goal is to build and understand a complete, working toolchain, lever
   - [Stage 2: Syntactic Analysis (Parsing in OCaml)](#stage-2-syntactic-analysis-parsing-in-ocaml)
   - [Stage 3: Assembly Generation (in OCaml)](#stage-3-assembly-generation-in-ocaml)
   - [Stage 4: Code Emission (in OCaml)](#stage-4-code-emission-in-ocaml)
-- [Current Compiler Capabilities](#-current-compiler-capabilities)
-- [Project Architecture](#-project-architecture)
-- [Getting Started](#-getting-started)
+- [Current Compiler Capabilities](#current-compiler-capabilities)
+- [Project Architecture](#project-architecture)
+- [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation & Building](#installation--building)
   - [Execution](#execution)
-- [Error Handling](#-error-handling)
-- [Potential Extensions](#-potential-extensions)
-- [License](#-license)
+- [Error Handling](#error-handling)
+- [Potential Extensions](#potential-extensions)
+- [License](#license)
 
 ---
 
@@ -202,7 +202,7 @@ This OCaml project is structured as a library (`lib/`) and a thin executable (`b
 │   ├── token_stream.ml        # Deserializes JSON into a token list
 │   └── token_stream.mli       # Public interface for the Token_stream
 ├── dune-project
-└── obv_parser.opam            # Project metadata and dependencies
+└── obvcc_toolchain.opam       # Project metadata and dependencies
 ```
 
 ---
@@ -222,7 +222,7 @@ This OCaml project is structured as a library (`lib/`) and a thin executable (`b
     It's recommended to place them in the same parent directory.
     ```bash
     git clone https://github.com/0bVdnt/obv_lexer.git
-    git clone https://github.com/0bVdnt/obv_parser.git
+    git clone https://github.com/0bVdnt/obvcc-toolchain.git
     ```
 
 2.  **Build the Rust Lexer:**
@@ -234,7 +234,7 @@ This OCaml project is structured as a library (`lib/`) and a thin executable (`b
 
 3.  **Install OCaml Dependencies and Build the Compiler:**
     ```bash
-    cd obv_parser
+    cd obvcc-toolchain
     opam install dune yojson
     dune build
     ```
@@ -247,12 +247,12 @@ The full pipeline involves two main steps: running the lexer, then running the O
 1.  **Run Lexer:** Create a source file `test.c` and run the lexer, saving the output to a JSON file.
     ```bash
     # From the parent directory of both repos
-    ./obv_lexer/target/release/obv_lexer ./obv_parser/test.c > ./obv_parser/test.json
+    ./obv_lexer/target/release/obv_lexer ./obvcc-toolchain/test.c > ./obvcc-toolchain/test.json
     ```
 
-2.  **Run OCaml Compiler:** Navigate into the `obv_parser` repo and run the executable on the generated JSON file.
+2.  **Run OCaml Compiler:** Navigate into the `obvcc-toolchain` repo and run the executable on the generated JSON file.
     ```bash
-    cd obv_parser
+    cd obvcc-toolchain
     dune exec -- ./bin/main.exe test.json
     ```
     This will generate a `test.s` assembly file.

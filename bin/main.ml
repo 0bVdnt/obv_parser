@@ -1,4 +1,4 @@
-open Obv_parser_lib
+open Obvcc_toolchain_lib
 
 (* Helper function to determine if the host OS is macOS. *)
 let is_macos () =

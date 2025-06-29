@@ -1,7 +1,7 @@
 (library 
- (name obv_parser_lib)
- ; dune maps the public name `obv_parser.lib` to the OCaml module name `Obv_parser_lib`.
- (public_name obv_parser.lib)
+ (name obvcc_toolchain_lib)
+ ; dune maps the public name `obvcc_toolchain.lib` to the OCaml module name `Obvcc_toolchain_lib`.
+ (public_name obvcc_toolchain.lib)
  ; this declares the dependencies FOR THIS LIBRARY.
  (libraries yojson)
 )
