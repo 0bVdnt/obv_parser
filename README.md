@@ -41,12 +41,12 @@ The primary goal is to build and understand a complete, working toolchain, lever
 This project implements a classic sequential pipeline, where the output of each stage becomes the input for the next, transforming the code from a high-level language into low-level machine instructions.
 
 ```mermaid
-graph TD;
-    A["C Source File (.c)"] -->|"1. Lexing (Rust)"| B("Token Stream JSON");
-    B -->|"2. Parsing (OCaml)"| C{"C Language AST"};
-    C -->|"3. Assembly Generation (OCaml)"| D{"x64 Assembly AST"};
-    D -->|"4. Code Emission (OCaml)"| E["Formatted Assembly File (.s)"];
-    E -->|"5. Assembling (GCC/Clang)"| F("Executable");
+graph TD
+    A["Source Code (.c)"] -->|"1. Lexing\n(Rust)"| B["Token Stream"];
+    B -->|"2. Parsing\n(OCaml)"| C["AST"];
+    C -->|"3. Assembly Gen\n(OCaml)"| D["x64 Assembly AST"];
+    D -->|"4. Emission\n(OCaml)"| E[".s Assembly File"];
+    E -->|"5. Assembling\n(GCC/Clang)"| F["Executable"];
 ```
 
 ---
