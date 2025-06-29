@@ -42,11 +42,11 @@ This project implements a classic sequential pipeline, where the output of each 
 
 ```mermaid
 graph TD;
-    A["C Source File (.c)"] -->|"1. Lexing (Rust)"| B("Token Stream JSON");
-    B -->|"2. Parsing (OCaml)"| C{"C Language AST"};
-    C -->|"3. Assembly Generation (OCaml)"| D{"x64 Assembly AST"};
-    D -->|"4. Code Emission (OCaml)"| E["Formatted Assembly File (.s)"];
-    E -->|"5. Assembling (GCC/Clang)"| F("Executable");
+    A["C Source File (.c)"] -->|"Lexing (Rust)"| B("Token Stream JSON");
+    B -->|"Parsing (OCaml)"| C{"C Language AST"};
+    C -->|"Assembly Generation (OCaml)"| D{"x64 Assembly AST"};
+    D -->|"Code Emission (OCaml)"| E["Formatted Assembly File (.s)"];
+    E -->|"Assembling (GCC/Clang)"| F("Executable");
 ```
 
 ---
